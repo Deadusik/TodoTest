@@ -1,13 +1,11 @@
 import { Route, Routes } from "react-router-dom"
 import { privateRoutes, routes } from "./router"
 import Error from "../pages/Error"
-import { getAuth } from "firebase/auth"
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from "../firebase/firebase"
 
 const AppRouter = () => {
-    const isAuthenticated = (): boolean => {
-        const auth = getAuth()
-        return auth.currentUser !== null
-    }
+    const [user] = useAuthState(auth)
 
     return (
         <>
@@ -22,7 +20,7 @@ const AppRouter = () => {
                         />)
                 }
                 {
-                    isAuthenticated() &&
+                    user &&
                     privateRoutes.map(route =>
                         <Route
                             key={route.path}
@@ -33,6 +31,7 @@ const AppRouter = () => {
                 }
                 <Route path="*" element={<Error />} />
             </Routes>
+
         </>
     )
 }
