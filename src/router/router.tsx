@@ -12,10 +12,6 @@ interface IRoute {
 export const routes: IRoute[] =
     [
         {
-            path: HOME,
-            element: <Home />
-        },
-        {
             path: REGISTRATION,
             element: <Registration />
         },
@@ -23,4 +19,12 @@ export const routes: IRoute[] =
             path: LOGIN,
             element: <Login />
         }
+    ]
+
+export const privateRoutes: IRoute[] =
+    [
+        {
+            path: HOME,
+            element: <Home />
+        },
     ]

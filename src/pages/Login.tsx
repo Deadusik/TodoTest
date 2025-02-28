@@ -4,6 +4,10 @@ import { textStyles } from "../styles/tailwind/text"
 import { cardStyles } from "../styles/tailwind/card"
 import TextInput from "../components/ui/TextInput"
 import Button from "../components/ui/Button"
+import { auth } from "../firebase/firebase"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
+import { HOME } from "../router/paths"
 
 const Login: FC = () => {
     const pageStyles = {
@@ -30,10 +34,14 @@ const Login: FC = () => {
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const [errorText, setErrorText] = useState<string>('fssf')
+    const [errorText, setErrorText] = useState<string>('')
+
+    const navigate = useNavigate()
 
     const loginHandler = () => {
-
+        if (checkFieldsData()) {
+            login()
+        }
     }
 
     const onEmailChangeHandler = (value: string) => {
@@ -54,6 +62,15 @@ const Login: FC = () => {
         return true
     }
 
+    const login = async () => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate(HOME)
+        } catch {
+            setErrorText('Login or password incorrect')
+        }
+    }
+
     return (
         <div className={pageStyles.page}>
             <div className={pageStyles.content}>
@@ -64,7 +81,8 @@ const Login: FC = () => {
                         placeholder="Enter Email" />
                     <TextInput
                         onChange={onPasswordChangeHandler}
-                        placeholder="Enter Password" />
+                        placeholder="Enter Password"
+                        type="password" />
                     <Button
                         content="Log In"
                         onClick={loginHandler} />

@@ -6,6 +6,11 @@ import { cardStyles } from "../styles/tailwind/card"
 //components
 import TextInput from "../components/ui/TextInput"
 import Button from "../components/ui/Button"
+//firebase
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase"
+import { useNavigate } from "react-router-dom"
+import { HOME } from "../router/paths"
 
 const Registration: FC = () => {
     const pageStyles = {
@@ -36,9 +41,11 @@ const Registration: FC = () => {
     const [repeatPassword, setRepeatPassword] = useState<string>('')
     const [errorText, setErrorText] = useState<string>('')
 
+    const navigate = useNavigate()
+
     const registrationHandler = () => {
         if (checkFieldsData()) {
-            console.log('reg ok')
+            registration(email, password)
         }
     }
 
@@ -111,6 +118,16 @@ const Registration: FC = () => {
         return regex.test(password)
     }
 
+    const registration = async (email: string, password: string) => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            navigate(HOME)
+        } catch {
+            setErrorText("Registration fail")
+        }
+    };
+
+
     return (
         <div className={pageStyles.page}>
             <div className={pageStyles.content}>
@@ -124,10 +141,12 @@ const Registration: FC = () => {
                         onChange={onEmailChange} />
                     <TextInput
                         placeholder="Enter Password"
-                        onChange={onPasswordChange} />
+                        onChange={onPasswordChange}
+                        type="password" />
                     <TextInput
                         placeholder="Repeat Password"
-                        onChange={onRepeatPasswordChange} />
+                        onChange={onRepeatPasswordChange}
+                        type="password" />
                     <Button
                         content="Create Account"
                         onClick={registrationHandler} />

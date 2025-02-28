@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { cardStyles } from "../../styles/tailwind/card"
 import { SPACE } from "../../utils/constants"
 import Button from "../ui/Button"
@@ -27,8 +28,19 @@ const todoFromStyles = {
 }
 
 const TodoForm = () => {
+    const [title, setTitle] = useState<string>()
+    const [description, setDescription] = useState<string>()
+
     const addTodoHandler = () => {
 
+    }
+
+    const onTitleChange = (value: string) => {
+        setTitle(value)
+    }
+
+    const onDescriptionChange = (value: string) => {
+        setDescription(value)
     }
 
     return (
@@ -37,8 +49,12 @@ const TodoForm = () => {
                 <form className={todoFromStyles.form}>
                     <div className={todoFromStyles.inputBlock}>
                         <h1 className={todoFromStyles.title}>Add New Task</h1>
-                        <TextInput placeholder="Title" />
-                        <TextArea placeholder="Description" />
+                        <TextInput
+                            placeholder="Title"
+                            onChange={onTitleChange} />
+                        <TextArea
+                            placeholder="Description"
+                            onChange={onDescriptionChange} />
                         <Button onClick={addTodoHandler} content="Add" />
                     </div>
                 </form>

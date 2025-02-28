@@ -5,9 +5,10 @@ import { inputStyles } from "../../styles/tailwind/input"
 interface IProps {
     onChange: (value: string) => void
     placeholder?: string
+    type?: string
 }
 
-const TextInput: FC<IProps> = ({ onChange, placeholder = '' }) => {
+const TextInput: FC<IProps> = ({ onChange, placeholder = '', type = 'text' }) => {
     const textInputStyles = {
         input: [
             inputStyles.input
@@ -16,6 +17,7 @@ const TextInput: FC<IProps> = ({ onChange, placeholder = '' }) => {
 
     return (
         <input
+            type={type}
             className={textInputStyles.input}
             placeholder={placeholder}
             onChange={(e) => onChange(e.target.value)} />
