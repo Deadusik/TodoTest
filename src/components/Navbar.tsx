@@ -27,10 +27,12 @@ const Navbar = () => {
     return (
         <div className={navbarStyles.navbar}>
             <div className={navbarStyles.content}>
-                <h1>Todo App</h1>
+                <Link to={HOME} className={navbarStyles.link}>
+                    <h1>Todo App</h1>
+                </Link>
                 <div className={navbarStyles.linkBlock}>
-                    <Link to={HOME} className={navbarStyles.link}>Todos</Link>
                     <Link to={REGISTRATION} className={navbarStyles.link}>Registration</Link>
+                    <Link to={REGISTRATION} className={navbarStyles.link}>Log In</Link>
                 </div>
             </div>
         </div>
