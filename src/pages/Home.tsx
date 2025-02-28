@@ -1,9 +1,10 @@
 import { FC } from "react"
+import Todo from "../components/Todo"
 
 const Home: FC = () => {
     return (
         <div>
-            <h1>Home</h1>
+            <Todo />
         </div>
     )
 }
