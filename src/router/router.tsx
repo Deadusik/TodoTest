@@ -1,7 +1,8 @@
 import { ReactNode } from "react"
-import { HOME, REGISTRATION } from "./paths"
+import { HOME, LOGIN, REGISTRATION } from "./paths"
 import Home from "../pages/Home"
 import Registration from "../pages/Registration"
+import Login from "../pages/Login"
 
 interface IRoute {
     path: string
@@ -17,5 +18,9 @@ export const routes: IRoute[] =
         {
             path: REGISTRATION,
             element: <Registration />
+        },
+        {
+            path: LOGIN,
+            element: <Login />
         }
     ]

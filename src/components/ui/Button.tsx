@@ -15,7 +15,8 @@ const Button: FC<IProps> = ({ content, color, onClick }) => {
             'text-white',
             'rounded-md',
             'cursor-pointer',
-            'hover:opacity-75'
+            'hover:opacity-75',
+            'max-w-xs'
         ].join(SPACE)
     }
 

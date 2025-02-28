@@ -27,27 +27,25 @@ const pageStyles = {
     ].join(SPACE)
 }
 
-const registrationHandler = () => {
+const loginHandler = () => {
 
 }
 
-const Registration: FC = () => {
+const Login: FC = () => {
     return (
         <div className={pageStyles.page}>
             <div className={pageStyles.content}>
                 <form className={pageStyles.form}>
-                    <h1 className={pageStyles.title}>Registration</h1>
+                    <h1 className={pageStyles.title}>Login</h1>
                     <TextInput placeholder="Enter Login" />
-                    <TextInput placeholder="Enter Email" />
                     <TextInput placeholder="Enter Password" />
-                    <TextInput placeholder="Repeat Password" />
                     <Button
-                        content="Create Account"
-                        onClick={registrationHandler} />
+                        content="Log In"
+                        onClick={loginHandler} />
                 </form>
             </div>
         </div>
     )
 }
 
-export default Registration
+export default Login

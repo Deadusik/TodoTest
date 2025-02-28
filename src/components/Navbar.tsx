@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { SPACE } from "../utils/constants"
-import { HOME, REGISTRATION } from "../router/paths"
+import { HOME, LOGIN, REGISTRATION } from "../router/paths"
 
 const navbarStyles = {
     navbar: [
@@ -32,7 +32,7 @@ const Navbar = () => {
                 </Link>
                 <div className={navbarStyles.linkBlock}>
                     <Link to={REGISTRATION} className={navbarStyles.link}>Registration</Link>
-                    <Link to={REGISTRATION} className={navbarStyles.link}>Log In</Link>
+                    <Link to={LOGIN} className={navbarStyles.link}>Log In</Link>
                 </div>
             </div>
         </div>

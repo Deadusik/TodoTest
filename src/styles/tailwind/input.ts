@@ -9,6 +9,7 @@ export const inputStyles = {
         'border-2',
         'border-sky-500',
         'rounded-md',
-        'focus:outline-none'
+        'focus:outline-none',
+        'max-w-3xs'
     ].join(SPACE)
 }
