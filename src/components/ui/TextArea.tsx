@@ -6,7 +6,7 @@ interface IProps {
     placeholder?: string
 }
 
-const TextInput: FC<IProps> = ({ placeholder = '' }) => {
+const TextArea: FC<IProps> = ({ placeholder = '' }) => {
     const textInputStyles = {
         input: [
             inputStyles.input
@@ -14,8 +14,8 @@ const TextInput: FC<IProps> = ({ placeholder = '' }) => {
     }
 
     return (
-        <input className={textInputStyles.input} placeholder={placeholder} />
+        <textarea className={textInputStyles.input} placeholder={placeholder} />
     )
 }
 
-export default TextInput
+export default TextArea

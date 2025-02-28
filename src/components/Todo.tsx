@@ -6,6 +6,7 @@ import { TodoStatus } from "../utils/enum"
 import { default as SuccessSvg } from '../assets/svgs/todo_status/success.svg?react'
 import { default as FailedSvg } from '../assets/svgs/todo_status/failed.svg?react'
 import { default as InProgressSvg } from '../assets/svgs/todo_status/in_progress.svg?react'
+import { cardStyles } from "../styles/tailwind/card"
 
 interface IProps {
     title: string
@@ -33,11 +34,7 @@ const Todo: FC<IProps> = ({ title, description, status }) => {
 
     const todoStyles = {
         todo: [
-            'outline-2',
-            'outline-sky-500',
-            'rounded-md',
-            'bg-stone-200',
-            'p-5'
+            cardStyles.body
         ].join(SPACE),
         content: [
 
