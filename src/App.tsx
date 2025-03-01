@@ -4,8 +4,9 @@ import { SPACE } from "./utils/constants"
 
 const appStyles = {
   wrapper: [
-    'lg:px-20',
-    'xl:px-150',
+    'px-20',
+    'xl:px-100',
+    '2xl:px-150',
     'pt-10'
   ].join(SPACE)
 }

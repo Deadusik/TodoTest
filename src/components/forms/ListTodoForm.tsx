@@ -12,7 +12,16 @@ const ListTodoForm = () => {
         form: [
             cardStyles.body
         ].join(SPACE),
+        title: [
+            'text-center',
+            textStyles.textTitle
+        ].join(SPACE),
         content: [
+            'flex',
+            'flex-col',
+            'gap-1'
+        ].join(SPACE),
+        inputBlock: [
             'flex',
             'gap-2'
         ].join(SPACE)
@@ -43,17 +52,20 @@ const ListTodoForm = () => {
     return (
         <div className={formStyles.form}>
             <div className={formStyles.content}>
-                <TextInput
-                    onChange={onChangeTodoListName}
-                    placeholder="Enter Todo List Name" />
-                <Button
-                    color={bg_green}
-                    content="Add"
-                    onClick={addTodoListHandler} />
+                <h1 className={textStyles.textTitle}>Add Todo List</h1>
+                <div className={formStyles.inputBlock}>
+                    <TextInput
+                        onChange={onChangeTodoListName}
+                        placeholder="Enter Todo List Name" />
+                    <Button
+                        color={bg_green}
+                        content="Add"
+                        onClick={addTodoListHandler} />
+                </div>
             </div>
             {
                 errorText &&
-                <p className={textStyles.errorText}>{errorText}</p>
+                <p className={formStyles.title}>{errorText}</p>
             }
         </div>
     )

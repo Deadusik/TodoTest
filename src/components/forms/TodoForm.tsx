@@ -12,13 +12,11 @@ const todoFromStyles = {
     content: [
     ].join(SPACE),
     form: [
-        'flex',
-        'justify-center'
+        'flex'
     ].join(SPACE),
     title: [
         'font-medium',
         'text-2xl',
-        'text-center'
     ].join(SPACE),
     inputBlock: [
         'flex',
