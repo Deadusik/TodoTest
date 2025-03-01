@@ -1,14 +1,22 @@
-import { useState } from "react"
+import { FC, useState } from "react"
+//styles
 import { cardStyles } from "../../styles/tailwind/card"
 import { textStyles } from "../../styles/tailwind/text"
+// utils
 import { SPACE } from "../../utils/constants"
 import { TodoStatus } from "../../utils/enum"
+//components
 import Button from "../ui/Button"
 import Todo from "./Todo"
 import DialogCustom from "../dialog/DialogCustom"
 import TodoForm from "../forms/TodoForm"
+import { TodoList as TodoListModel } from "../../models/todo_list"
 
-const TodoList = () => {
+interface Props {
+    todoList: TodoListModel
+}
+
+const TodoList: FC<Props> = ({ todoList }) => {
     const listStyles = {
         list: [
             cardStyles.body
@@ -38,24 +46,9 @@ const TodoList = () => {
     return (
         <div className={listStyles.list}>
             <div className={listStyles.content}>
-                <h1 className={listStyles.title}>Todo Name</h1>
+                <h1 className={listStyles.title}>{todoList.title}</h1>
                 <div className={listStyles.todoBlock}>
-                    <Todo
-                        title="todo"
-                        description="todo desciption"
-                        status={TodoStatus.InProgress} />
-                    <Todo
-                        title="todo"
-                        description="todo desciption"
-                        status={TodoStatus.InProgress} />
-                    <Todo
-                        title="todo"
-                        description="todo desciption"
-                        status={TodoStatus.InProgress} />
-                    <Todo
-                        title="todo"
-                        description="todo desciption"
-                        status={TodoStatus.InProgress} />
+                    { }
                 </div>
                 <Button
                     content="Add New Todo"

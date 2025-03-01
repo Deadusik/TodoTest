@@ -9,8 +9,6 @@ import TextInput from "../ui/TextInput"
 import { SPACE } from "../../utils/constants"
 import { isValidTodoListName } from "../../utils/fieldValidation"
 import { addNewTodoList } from "../../firebase/todo"
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "../../firebase/firebase"
 
 const ListTodoForm = () => {
     const formStyles = {
@@ -38,6 +36,7 @@ const ListTodoForm = () => {
         if (isValidTodoList()) {
             const result = await addNewTodoList(todoListName)
             if (!result.success) setErrorText(result.message)
+            else window.location.reload()
         }
     }
 

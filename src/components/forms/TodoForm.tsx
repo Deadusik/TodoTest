@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 // utils
 import { SPACE } from "../../utils/constants"
 // components
@@ -7,33 +7,34 @@ import TextArea from "../ui/TextArea"
 import TextInput from "../ui/TextInput"
 import { textStyles } from "../../styles/tailwind/text"
 
-const todoFromStyles = {
-    todoForm: [
-    ].join(SPACE),
-    content: [
-    ].join(SPACE),
-    form: [
-        'flex'
-    ].join(SPACE),
-    title: [
-        'font-medium',
-        'text-2xl',
-    ].join(SPACE),
-    inputBlock: [
-        'flex',
-        'flex-col',
-        'gap-1'
-    ].join(SPACE)
-}
 
-const TodoForm = () => {
+const TodoForm: FC = () => {
+    const todoFromStyles = {
+        todoForm: [
+        ].join(SPACE),
+        content: [
+        ].join(SPACE),
+        form: [
+            'flex'
+        ].join(SPACE),
+        title: [
+            'font-medium',
+            'text-2xl',
+        ].join(SPACE),
+        inputBlock: [
+            'flex',
+            'flex-col',
+            'gap-1'
+        ].join(SPACE)
+    }
+
     const [title, setTitle] = useState<string>()
     const [description, setDescription] = useState<string>()
     const [errorText, setErrorText] = useState<string>()
 
     const addTodoHandler = () => {
         if (isVlaidTodo()) {
-            console.log('todo add ok')
+            console.log('error')
         }
     }
 

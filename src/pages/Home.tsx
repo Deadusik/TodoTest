@@ -1,13 +1,33 @@
-import { FC, useState } from "react"
-import Todo from "../components/todo/Todo"
+import { FC, useEffect, useState } from "react"
+// utils
 import { TodoStatus } from "../utils/enum"
 import { SPACE } from "../utils/constants"
+// components
+import Todo from "../components/todo/Todo"
 import ListTodoForm from "../components/forms/ListTodoForm"
 import TodoList from "../components/todo/TodoList"
 import DialogCustom from "../components/dialog/DialogCustom"
 import Button from "../components/ui/Button"
+// firebase
+import { fetchTodoLists } from "../firebase/todo"
+import { TodoList as TodoListModel } from "../models/todo_list"
 
 const Home: FC = () => {
+    const [todoListArr, setTodoListArr] = useState<TodoListModel[]>([])
+    const [errorText, setErrorText] = useState<string>('')
+
+    const fetchData = async () => {
+        try {
+            const todoListArr = await fetchTodoLists()
+            setTodoListArr(todoListArr)
+        }
+        catch { setErrorText('Error Fetch Data') }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     const homeStyles = {
         home: [
             'flex',
@@ -29,7 +49,6 @@ const Home: FC = () => {
                     content="Add New List"
                     onClick={showTodoListFormHandler} />
             </div>
-            <TodoList />
             <Todo
                 title="title"
                 description="description"
@@ -38,6 +57,13 @@ const Home: FC = () => {
                 content={<ListTodoForm />}
                 isVisible={isTodoListFormVisible}
                 setVisibility={setIsTodoListFormVisible} />
+            {
+                todoListArr.map(todoList =>
+                    <TodoList
+                        key={todoList.id}
+                        todoList={todoList} />
+                )
+            }
         </div>
     )
 }
