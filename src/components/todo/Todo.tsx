@@ -1,12 +1,16 @@
 import { FC, ReactNode } from "react"
-import { SPACE } from "../utils/constants"
-import Button from "./ui/Button"
-import { TodoStatus } from "../utils/enum"
 // svgs
-import { default as SuccessSvg } from '../assets/svgs/todo_status/success.svg?react'
-import { default as FailedSvg } from '../assets/svgs/todo_status/failed.svg?react'
-import { default as InProgressSvg } from '../assets/svgs/todo_status/in_progress.svg?react'
-import { cardStyles } from "../styles/tailwind/card"
+import { default as SuccessSvg } from '../../assets/svgs/todo_status/success.svg?react'
+import { default as FailedSvg } from '../../assets/svgs/todo_status/failed.svg?react'
+import { default as InProgressSvg } from '../../assets/svgs/todo_status/in_progress.svg?react'
+// styles 
+import { cardStyles } from "../../styles/tailwind/card"
+import { bg_green, bg_red, bg_yellow } from "../../styles/tailwind/bg_colors"
+// components 
+import Button from "../ui/Button"
+// utils
+import { SPACE } from "../../utils/constants"
+import { TodoStatus } from "../../utils/enum"
 
 interface IProps {
     title: string
@@ -93,11 +97,11 @@ const Todo: FC<IProps> = ({ title, description, status }) => {
                             <Button
                                 content="Done"
                                 onClick={editHandler}
-                                color="bg-green-400" />
+                                color={bg_green} />
                             <Button
                                 content="Fail"
                                 onClick={deleteHandler}
-                                color="bg-yellow-600" />
+                                color={bg_yellow} />
                         </div>
                     }
                     <div className={todoStyles.editBlock}>
@@ -108,7 +112,7 @@ const Todo: FC<IProps> = ({ title, description, status }) => {
                         <Button
                             content="Delete"
                             onClick={deleteHandler}
-                            color="bg-red-600" />
+                            color={bg_red} />
                     </div>
                 </div>
             </div>
