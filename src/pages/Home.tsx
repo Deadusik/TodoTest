@@ -3,6 +3,7 @@ import Todo from "../components/Todo"
 import { TodoStatus } from "../utils/enum"
 import TodoForm from "../components/forms/TodoForm"
 import { SPACE } from "../utils/constants"
+import ListTodoForm from "../components/forms/ListTodoForm"
 
 const Home: FC = () => {
     const homeStyles = {
@@ -15,6 +16,7 @@ const Home: FC = () => {
 
     return (
         <div className={homeStyles.home}>
+            <ListTodoForm />
             <TodoForm />
             <Todo
                 title="title"

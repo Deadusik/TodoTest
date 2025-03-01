@@ -7,6 +7,7 @@ import { default as SuccessSvg } from '../assets/svgs/todo_status/success.svg?re
 import { default as FailedSvg } from '../assets/svgs/todo_status/failed.svg?react'
 import { default as InProgressSvg } from '../assets/svgs/todo_status/in_progress.svg?react'
 import { cardStyles } from "../styles/tailwind/card"
+import { bg_green, bg_red, bg_yellow } from "../styles/tailwind/bg_colors"
 
 interface IProps {
     title: string
@@ -93,11 +94,11 @@ const Todo: FC<IProps> = ({ title, description, status }) => {
                             <Button
                                 content="Done"
                                 onClick={editHandler}
-                                color="bg-green-400" />
+                                color={bg_green} />
                             <Button
                                 content="Fail"
                                 onClick={deleteHandler}
-                                color="bg-yellow-600" />
+                                color={bg_yellow} />
                         </div>
                     }
                     <div className={todoStyles.editBlock}>
@@ -108,7 +109,7 @@ const Todo: FC<IProps> = ({ title, description, status }) => {
                         <Button
                             content="Delete"
                             onClick={deleteHandler}
-                            color="bg-red-600" />
+                            color={bg_red} />
                     </div>
                 </div>
             </div>

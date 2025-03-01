@@ -11,6 +11,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase"
 import { useNavigate } from "react-router-dom"
 import { HOME } from "../router/paths"
+import { isValidEmail, isValidLogin, isValidPassword } from "../utils/fieldValidation"
 
 const Registration: FC = () => {
     const pageStyles = {
@@ -81,19 +82,19 @@ const Registration: FC = () => {
             return false
         }
 
-        if (!isValidEmail()) {
+        if (!isValidEmail(email)) {
             errorMessage += SPACE + 'Incorrect Email'
             setErrorText(errorMessage)
             return false
         }
 
-        if (!isValidLogin()) {
+        if (!isValidLogin(login)) {
             errorMessage += SPACE + 'The login must contain 3-20 characters: Latin letters, numbers, underscore (_) or hyphen (-).'
             setErrorText(errorMessage)
             return false
         }
 
-        if (!isValidPassword()) {
+        if (!isValidPassword(password)) {
             errorMessage += SPACE + 'The password must contain at least 6 characters, at least 1 letter and 1 number'
             setErrorText(errorMessage)
             return false
@@ -101,21 +102,6 @@ const Registration: FC = () => {
 
         setErrorText('')
         return true
-    }
-
-    const isValidEmail = (): boolean => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return regex.test(email)
-    }
-
-    const isValidLogin = (): boolean => {
-        const regex = /^[a-zA-Z0-9_-]{3,20}$/
-        return regex.test(login)
-    }
-
-    const isValidPassword = (): boolean => {
-        const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/
-        return regex.test(password)
     }
 
     const registration = async (email: string, password: string) => {

@@ -46,7 +46,7 @@ const TodoForm = () => {
     return (
         <div className={todoFromStyles.todoForm}>
             <div className={todoFromStyles.content}>
-                <form className={todoFromStyles.form}>
+                <div className={todoFromStyles.form}>
                     <div className={todoFromStyles.inputBlock}>
                         <h1 className={todoFromStyles.title}>Add New Task</h1>
                         <TextInput
@@ -57,7 +57,7 @@ const TodoForm = () => {
                             onChange={onDescriptionChange} />
                         <Button onClick={addTodoHandler} content="Add" />
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
