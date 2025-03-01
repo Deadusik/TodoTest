@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react"
+import { FC, ReactNode } from "react"
 import { cardStyles } from "../../styles/tailwind/card"
 import { SPACE } from "../../utils/constants"
 import { textStyles } from "../../styles/tailwind/text"

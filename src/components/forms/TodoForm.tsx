@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { cardStyles } from "../../styles/tailwind/card"
+// utils
 import { SPACE } from "../../utils/constants"
+// components
 import Button from "../ui/Button"
 import TextArea from "../ui/TextArea"
 import TextInput from "../ui/TextInput"
+import { textStyles } from "../../styles/tailwind/text"
 
 const todoFromStyles = {
     todoForm: [
@@ -27,9 +29,12 @@ const todoFromStyles = {
 const TodoForm = () => {
     const [title, setTitle] = useState<string>()
     const [description, setDescription] = useState<string>()
+    const [errorText, setErrorText] = useState<string>()
 
     const addTodoHandler = () => {
-
+        if (isVlaidTodo()) {
+            console.log('todo add ok')
+        }
     }
 
     const onTitleChange = (value: string) => {
@@ -38,6 +43,16 @@ const TodoForm = () => {
 
     const onDescriptionChange = (value: string) => {
         setDescription(value)
+    }
+
+    const isVlaidTodo = (): boolean => {
+        if (!title || !description) {
+            setErrorText('Please fill up all fields')
+            return false
+        }
+
+        setErrorText('')
+        return true
     }
 
     return (
@@ -53,6 +68,10 @@ const TodoForm = () => {
                             placeholder="Description"
                             onChange={onDescriptionChange} />
                         <Button onClick={addTodoHandler} content="Add" />
+                        {
+                            errorText &&
+                            <p className={textStyles.errorText}>{errorText}</p>
+                        }
                     </div>
                 </div>
             </div>

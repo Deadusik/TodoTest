@@ -1,9 +1,12 @@
+import { useState } from "react"
 import { cardStyles } from "../../styles/tailwind/card"
 import { textStyles } from "../../styles/tailwind/text"
 import { SPACE } from "../../utils/constants"
 import { TodoStatus } from "../../utils/enum"
 import Button from "../ui/Button"
 import Todo from "./Todo"
+import DialogCustom from "../dialog/DialogCustom"
+import TodoForm from "../forms/TodoForm"
 
 const TodoList = () => {
     const listStyles = {
@@ -26,8 +29,10 @@ const TodoList = () => {
         ].join(SPACE)
     }
 
-    const addNewTodoHandler = () => {
+    const [isTodoFromVisible, setIsTodoFormVisible] = useState<boolean>(false)
 
+    const addNewTodoHandler = () => {
+        setIsTodoFormVisible(!isTodoFromVisible)
     }
 
     return (
@@ -56,6 +61,11 @@ const TodoList = () => {
                     content="Add New Todo"
                     onClick={addNewTodoHandler} />
             </div>
+            <DialogCustom
+                isVisible={isTodoFromVisible}
+                setVisibility={setIsTodoFormVisible}
+                content={<TodoForm />}
+            />
         </div>
     )
 }
