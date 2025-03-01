@@ -7,7 +7,6 @@ import TextInput from "../ui/TextInput"
 
 const todoFromStyles = {
     todoForm: [
-        cardStyles.body
     ].join(SPACE),
     content: [
     ].join(SPACE),

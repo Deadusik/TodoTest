@@ -1,16 +1,17 @@
 import { useState } from "react"
+// styles
 import { bg_green } from "../../styles/tailwind/bg_colors"
-import { SPACE } from "../../utils/constants"
+import { textStyles } from "../../styles/tailwind/text"
+// components 
 import Button from "../ui/Button"
 import TextInput from "../ui/TextInput"
+// utils 
+import { SPACE } from "../../utils/constants"
 import { isValidTodoListName } from "../../utils/fieldValidation"
-import { textStyles } from "../../styles/tailwind/text"
-import { cardStyles } from "../../styles/tailwind/card"
 
 const ListTodoForm = () => {
     const formStyles = {
         form: [
-            cardStyles.body
         ].join(SPACE),
         title: [
             'text-center',
