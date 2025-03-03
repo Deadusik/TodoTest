@@ -8,24 +8,15 @@ import ListTodoForm from "../components/forms/ListTodoForm"
 import TodoList from "../components/todo/TodoList"
 import DialogCustom from "../components/dialog/DialogCustom"
 import Button from "../components/ui/Button"
-// firebase
-import { fetchTodoLists } from "../firebase/todo"
-import { TodoList as TodoListModel } from "../models/todo_list"
+import { useAppDispatch, useAppSelector } from "../hooks/redux"
+import { fetchTodoListArr } from "../store/reducers/action_creators/TodoListActionCreators"
 
 const Home: FC = () => {
-    const [todoListArr, setTodoListArr] = useState<TodoListModel[]>([])
-    const [errorText, setErrorText] = useState<string>('')
-
-    const fetchData = async () => {
-        try {
-            const todoListArr = await fetchTodoLists()
-            setTodoListArr(todoListArr)
-        }
-        catch { setErrorText('Error Fetch Data') }
-    }
+    const { isLoading, todoListArr, error } = useAppSelector(state => state.todoReducer)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        fetchData()
+        dispatch(fetchTodoListArr())
     }, [])
 
     const homeStyles = {
@@ -57,13 +48,18 @@ const Home: FC = () => {
                 content={<ListTodoForm />}
                 isVisible={isTodoListFormVisible}
                 setVisibility={setIsTodoListFormVisible} />
-            {
+            {!isLoading ?
                 todoListArr.map(todoList =>
                     <TodoList
                         key={todoList.id}
                         todoList={todoList} />
                 )
+                :
+                <p>Todo List Loading...</p>
             }
+            {
+                error &&
+                <p>{error}</p>}
         </div>
     )
 }

@@ -8,7 +8,8 @@ import TextInput from "../ui/TextInput"
 // utils 
 import { SPACE } from "../../utils/constants"
 import { isValidTodoListName } from "../../utils/fieldValidation"
-import { addNewTodoList } from "../../firebase/todo"
+import { addTodoListArr } from "../../store/reducers/action_creators/TodoListActionCreators"
+import { useAppDispatch } from "../../hooks/redux"
 
 const ListTodoForm = () => {
     const formStyles = {
@@ -31,12 +32,11 @@ const ListTodoForm = () => {
 
     const [todoListName, setTodoListName] = useState<string>('')
     const [errorText, setErrorText] = useState<string>('')
+    const dispatch = useAppDispatch()
 
     const addTodoListHandler = async () => {
         if (isValidTodoList()) {
-            const result = await addNewTodoList(todoListName)
-            if (!result.success) setErrorText(result.message)
-            else window.location.reload()
+            dispatch(addTodoListArr(todoListName))
         }
     }
 
