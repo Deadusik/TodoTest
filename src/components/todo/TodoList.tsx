@@ -4,10 +4,8 @@ import { cardStyles } from "../../styles/tailwind/card"
 import { textStyles } from "../../styles/tailwind/text"
 // utils
 import { SPACE } from "../../utils/constants"
-import { TodoStatus } from "../../utils/enum"
 //components
 import Button from "../ui/Button"
-import Todo from "./Todo"
 import DialogCustom from "../dialog/DialogCustom"
 import TodoForm from "../forms/TodoForm"
 import { TodoList as TodoListModel } from "../../models/todo_list"

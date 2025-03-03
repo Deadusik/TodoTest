@@ -28,7 +28,20 @@ export const todoListSlice = createSlice({
         todoListArrFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false
             state.error = action.payload
-        }
+        },
+        todoListArrAdding(state) {
+            state.isLoading = true
+        },
+        todoListArrAddingSuccess(state, action: PayloadAction<TodoList>) {
+            state.isLoading = false
+            state.error = ''
+            console.log(action.payload)
+            state.todoListArr.push(action.payload)
+        },
+        todoListArrAddingError(state, action: PayloadAction<string>) {
+            state.isLoading = false
+            state.error = action.payload
+        },
     }
 })
 
