@@ -3,8 +3,6 @@ import { TodoList } from "../models/todo_list"
 import { Todo } from "../models/todo"
 
 export const documentDataToTodoList = (data: DocumentData): TodoList => {
-    console.log('title', data)
-
     const todoList: TodoList = {
         id: data.id,
         title: data.title ?? '',

@@ -14,9 +14,10 @@ const initialState: TodoListState = {
 }
 
 export const todoListSlice = createSlice({
-    name: 'todo',
+    name: 'todo_list',
     initialState,
     reducers: {
+        // fetching reducers
         todoListArrFetching(state) {
             state.isLoading = true
         },
@@ -29,6 +30,7 @@ export const todoListSlice = createSlice({
             state.isLoading = false
             state.error = action.payload
         },
+        // adding reducres
         todoListArrAdding(state) {
             state.isLoading = true
         },

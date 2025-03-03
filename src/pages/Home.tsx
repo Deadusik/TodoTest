@@ -9,7 +9,7 @@ import TodoList from "../components/todo/TodoList"
 import DialogCustom from "../components/dialog/DialogCustom"
 import Button from "../components/ui/Button"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
-import { fetchTodoListArr } from "../store/reducers/TodoListActionCreators"
+import { fetchTodoListArr } from "../store/reducers/action_creators/TodoListActionCreators"
 
 const Home: FC = () => {
     const { isLoading, todoListArr, error } = useAppSelector(state => state.todoReducer)

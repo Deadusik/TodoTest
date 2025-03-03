@@ -1,14 +1,13 @@
 //firebase
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
+import { db } from "../../../firebase/firebase";
 import { getAuth } from "firebase/auth";
 // redux
-import { AppDispatch } from "../store";
-import { todoListSlice } from "./TodoListSlice";
+import { AppDispatch } from "../../store";
+import { todoListSlice } from "../TodoListSlice";
 // models
-import { TodoList } from "../../models/todo_list";
-import { Todo } from '../../models/todo'
-import { documentDataToTodoList } from "../../utils/convert_types";
+import { TodoList } from "../../../models/todo_list";
+import { documentDataToTodoList } from "../../../utils/convert_types";
 
 
 export const fetchTodoListArr = () => async (dispatch: AppDispatch) => {
@@ -21,8 +20,8 @@ export const fetchTodoListArr = () => async (dispatch: AppDispatch) => {
         if (!user)
             throw new Error('Auth error')
 
-        const todoListRef = collection(db, 'todo_list')
-        const q = query(todoListRef, where('userId', '==', user?.uid))
+        const todoListArrRef = collection(db, 'todo_list')
+        const q = query(todoListArrRef, where('userId', '==', user?.uid))
 
         const querySnapshot = await getDocs(q);
         const todoListArr: TodoList[] = []
@@ -64,16 +63,12 @@ export const addTodoListArr = (title: string) => async (dispatch: AppDispatch) =
                 list: [],
             } as TodoList
 
-            await addDoc(todoListCollection, {
-                title,
-                userId,
-                todoList: []
-            })
+            await addDoc(todoListCollection, newList)
 
             dispatch(todoListSlice.actions.todoListArrAddingSuccess(
                 newList
             ))
-        }
+        } else throw new Error('No title info')
     } catch (e) {
         if (e instanceof Error)
             dispatch(todoListSlice.actions.todoListArrAddingError(e.message))
