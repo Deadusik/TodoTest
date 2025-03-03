@@ -5,22 +5,7 @@ import { getAuth } from 'firebase/auth'
 import { TodoList } from '../models/todo_list'
 import { Todo } from '../models/todo'
 import { TodoStatus } from '../utils/enum'
-
-const DocumentDataToTodoList = (data: DocumentData): TodoList => {
-    const todoList: TodoList = {
-        id: data.id,
-        title: data.title ?? '',
-        list: Array.isArray(data.list) ? data.list.map(todo => (
-            {
-                listId: data.id,
-                title: todo.title ?? '',
-                description: todo.description
-            } as Todo
-        )) : []
-    }
-
-    return todoList
-}
+import { documentDataToTodoList } from '../utils/convert_types'
 
 export const addNewTodo = async (title: string, description: string, todoId: string, status: TodoStatus): Promise<void> => {
     const auth = getAuth()
@@ -97,7 +82,7 @@ export const fetchTodoLists = async (): Promise<TodoList[]> => {
         querySnapshot.forEach((doc) => {
             const data = doc.data()
 
-            const todoList = DocumentDataToTodoList(data)
+            const todoList = documentDataToTodoList(data)
             todoListArr.push(todoList)
         })
 
